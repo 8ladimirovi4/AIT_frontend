@@ -1,5 +1,5 @@
-import { CommonButton } from "components/styles"
-import type { ButtonProps } from "components/types"
+import { CommonButton } from "components/buttons/styles"
+import type { ButtonProps } from "components/buttons/types"
 
 function ButtonCommon({ callback, colors, title, status }: ButtonProps) {
   return (

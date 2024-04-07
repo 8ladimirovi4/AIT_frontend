@@ -4,17 +4,18 @@ import {
   jokeSliceSelectors,
 } from "store/redux/joke/jokeSlice"
 import Joke from "./Joke"
-import { PageWrapper, JokeWrapper, BtnJokeContainer} from "./styles"
-import ButtonCommon from "components/ButtonCommon"
-
+import { PageWrapper, JokeWrapper, BtnJokeContainer } from "./styles"
+import ButtonCommon from "components/buttons/ButtonCommon"
 
 function Jokes() {
   const dispatch = useAppDispatch()
   const { data, status, error } = useAppSelector(jokeSliceSelectors.joke)
 
   const handleGetJoke = () => {
-    if(status === 'loading') return
-    dispatch(jokeSliceActions.getJoke(undefined /*тело для post,delete,put и др.*/))
+    if (status === "loading") return
+    dispatch(
+      jokeSliceActions.getJoke(undefined /*тело для post,delete,put и др.*/),
+    )
   }
 
   const removeAllJokes = () => {
@@ -38,25 +39,21 @@ function Jokes() {
   return (
     <PageWrapper>
       <JokeWrapper>
-        <BtnJokeContainer
-        width={'150'}
-        >
-        <ButtonCommon
-          callback={handleGetJoke}
-          colors={['rgb(129, 212, 239)','rgb(65, 187, 228)']}
-          status={status}
-          title={'Get Joke'}
-            />
+        <BtnJokeContainer width={"150"}>
+          <ButtonCommon
+            callback={handleGetJoke}
+            colors={["rgb(129, 212, 239)", "rgb(65, 187, 228)"]}
+            status={status}
+            title={"Get Joke"}
+          />
         </BtnJokeContainer>
         {jokes}
         {jokes.length ? (
-          <BtnJokeContainer
-          width={'250'}
-          >
-          <ButtonCommon
-          callback={removeAllJokes}
-          colors={['rgb(229, 130, 130)','rgb(237, 88, 88)']}
-          title={'Delete All'}
+          <BtnJokeContainer width={"250"}>
+            <ButtonCommon
+              callback={removeAllJokes}
+              colors={["rgb(229, 130, 130)", "rgb(237, 88, 88)"]}
+              title={"Delete All"}
             />
           </BtnJokeContainer>
         ) : (

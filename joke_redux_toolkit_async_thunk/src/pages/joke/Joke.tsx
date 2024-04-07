@@ -8,7 +8,7 @@ import {
   Question,
   ResponseWrapper,
 } from "./styles"
-import ButtonCommon from "components/ButtonCommon"
+import ButtonCommon from "components/buttons/ButtonCommon"
 
 function Joke({ id, list, question, answer, status, error }: JokeProps) {
   const dispatch = useAppDispatch()
