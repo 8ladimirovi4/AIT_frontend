@@ -1,3 +1,5 @@
+import styled from "@emotion/styled/macro"
+
 export interface JokeProps {
     id: string
     list: number

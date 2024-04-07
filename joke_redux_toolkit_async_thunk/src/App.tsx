@@ -1,7 +1,13 @@
 import Jokes from "pages/joke/Jokes"
+import GlobalStyles from "styles/GlobalStyles"
 
 const App = () => {
-  return <Jokes />
+  return (
+    <>
+    <GlobalStyles/>
+    <Jokes />
+    </>
+  )
 }
 
 export default App

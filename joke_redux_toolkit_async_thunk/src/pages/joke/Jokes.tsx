@@ -1,16 +1,19 @@
 import { useAppDispatch, useAppSelector } from "store/hooks"
-import "./styles.css"
 import {
   jokeSliceActions,
   jokeSliceSelectors,
 } from "store/redux/joke/jokeSlice"
 import Joke from "./Joke"
+import { PageWrapper, JokeWrapper, BtnJokeContainer} from "./styles"
+import ButtonCommon from "components/ButtonCommon"
+
 
 function Jokes() {
   const dispatch = useAppDispatch()
   const { data, status, error } = useAppSelector(jokeSliceSelectors.joke)
 
   const handleGetJoke = () => {
+    if(status === 'loading') return
     dispatch(jokeSliceActions.getJoke(undefined /*тело для post,delete,put и др.*/))
   }
 
@@ -33,30 +36,34 @@ function Jokes() {
   })
 
   return (
-    <div className="page_wrapper">
-      <div className="joke_wrapper">
-        <div
-          className="button"
-          style={{
-            backgroundColor: status === "loading" ? "lightgray" : "lightblue",
-            borderColor:
-              status === "loading" ? "lightgray" : "rgb(88, 195, 230)",
-            cursor:  status === "loading" ? "wait" : "pointer"
-          }}
-          onClick={status === "loading" ? () => {} : handleGetJoke}
+    <PageWrapper>
+      <JokeWrapper>
+        <BtnJokeContainer
+        width={'150'}
         >
-          Get Joke
-        </div>
+        <ButtonCommon
+          callback={handleGetJoke}
+          colors={['rgb(129, 212, 239)','rgb(65, 187, 228)']}
+          status={status}
+          title={'Get Joke'}
+            />
+        </BtnJokeContainer>
         {jokes}
         {jokes.length ? (
-          <div className="del_all_button button" onClick={removeAllJokes}>
-            Delete all
-          </div>
+          <BtnJokeContainer
+          width={'250'}
+          >
+          <ButtonCommon
+          callback={removeAllJokes}
+          colors={['rgb(229, 130, 130)','rgb(237, 88, 88)']}
+          title={'Delete All'}
+            />
+          </BtnJokeContainer>
         ) : (
           <></>
         )}
-      </div>
-    </div>
+      </JokeWrapper>
+    </PageWrapper>
   )
 }
 

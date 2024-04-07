@@ -15,7 +15,7 @@ export const jokeSlice = createAppSlice({
   initialState: jokeInitialState,
   reducers: create => ({
     getJoke: create.asyncThunk(
-      async (arg: any, {rejectWithValue}) => {
+      async (arg: any, { rejectWithValue }) => {
         const response = await getJokeAPI(/*arg,*/ rejectWithValue)
         return response
       },
@@ -44,14 +44,16 @@ export const jokeSlice = createAppSlice({
         },
       },
     ),
-      removeJoke: create.reducer((state: jokeSliceState, action: PayloadAction<string>)=>{
+    removeJoke: create.reducer(
+      (state: jokeSliceState, action: PayloadAction<string>) => {
         state.data = [...state.data].filter(joke => {
           return joke.id !== action.payload
         })
-      }),
-      removeAllJokes: create.reducer((state: jokeSliceState) => {
-        return jokeInitialState
-      })
+      },
+    ),
+    removeAllJokes: create.reducer((state: jokeSliceState) => {
+      return jokeInitialState
+    }),
   }),
   selectors: {
     joke: (state: jokeSliceState) => state,
