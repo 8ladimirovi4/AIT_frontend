@@ -25,14 +25,14 @@ export const JokeWrapper = styled.div`
 
 export const BtnJokeContainer = styled.div<{
   status?: string
-  width: string
+  width?: string
   align?: string
 }>`
   display: flex;
   justify-content: center;
   align-items: center;
   align-self: ${({ align }) => (align ? align : "center")};
-  width: ${({ width }) => width + "px"};
+  width: ${({ width }) => width ? width + "px" : 'fit-content'};
   height: fit-content;
   font-size: xx-large;
   font-weight: 500;
