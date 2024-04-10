@@ -1,6 +1,8 @@
 ## AIT_lessons
 
-This repository contains tutorials on web development using HTML, CSS, JavaScript, TypeScript, and React.
+This repository contains tutorials on web development using HTML, CSS, JavaScript, TypeScript, and React. 
+
+Lessons at branches
 
 # Installation
 To install the necessary dependencies, run the command:
