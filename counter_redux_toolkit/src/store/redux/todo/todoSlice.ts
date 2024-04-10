@@ -3,7 +3,7 @@ import type { PayloadAction } from "@reduxjs/toolkit"
 import type { Todo, TodoesSliceState } from "./types"
 
 const todoInitialState: TodoesSliceState = {
-  tasks: [{ id: "1", task: "my first task", status: false }],
+  tasks: [],
 }
 
 const todoSlice = createSlice({
@@ -20,6 +20,9 @@ const todoSlice = createSlice({
         state.tasks = state.tasks.filter(task => task.id !== action.payload.id)
       },
     ),
+    deleteTasks: create.reducer(() => {
+      return todoInitialState
+    }),
     editTask: create.reducer(
       (state: TodoesSliceState, action: PayloadAction<Todo>) => {
         state.tasks.map(task => {
@@ -32,14 +35,21 @@ const todoSlice = createSlice({
         })
       },
     ),
-    completeTask: create.reducer((state: TodoesSliceState, action: PayloadAction<Todo>) => {
-      state.tasks.map(task => {
-        return [...state.tasks, task.id === action.payload.id ? task.status = action.payload.status : task]
-      })
-    })
+    completeTask: create.reducer(
+      (state: TodoesSliceState, action: PayloadAction<Todo>) => {
+        state.tasks.map(task => {
+          return [
+            ...state.tasks,
+            task.id === action.payload.id
+              ? (task.status = action.payload.status)
+              : task,
+          ]
+        })
+      },
+    ),
   }),
   selectors: {
-    tasks: (state: TodoesSliceState) => state.tasks
+    tasks: (state: TodoesSliceState) => state.tasks,
   },
 })
 export const todoSliceActions = todoSlice.actions

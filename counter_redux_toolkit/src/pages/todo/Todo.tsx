@@ -1,9 +1,19 @@
 import { useAppDispatch } from "store/hooks"
-import "./styles.css"
 import type { TodoProps } from "./types"
 import { todoSliceActions } from "store/redux/todo/todoSlice"
 import { useState } from "react"
 import type { ChangeEvent } from "react"
+import {
+  BtnContainer,
+  CheckboxContainer,
+  TaskContainer,
+  TaskTitle,
+  TaskWrapper,
+  TodoInputContainer,
+  TodoWrapper,
+} from "./styles"
+import ButtonCommon from "components/buttons/ButtonCommon"
+import InputCommon from "components/inputs/InputCommon"
 
 function Todo({ id, task, status }: TodoProps) {
   const [todoState, setTodoState] = useState<string>("")
@@ -22,32 +32,48 @@ function Todo({ id, task, status }: TodoProps) {
   }
 
   const handleSetStatus = (e: ChangeEvent<HTMLInputElement>) => {
-    dispatch(todoSliceActions.completeTask({id, status: e.target.checked}))
+    dispatch(todoSliceActions.completeTask({ id, status: e.target.checked }))
   }
 
   return (
-    <div className="todo_wrapper">
-      <div className="task_container">
-        <span style={{textDecoration: status ? 'line-through' : 'none'}}>{task}</span>
-      </div>
-      <div className="todo_input_container">
-        <input type="text" onChange={handleChangeTask} value={todoState} />
-      </div>
-      <div className="task_wrapper">
-        <div className="task_button" onClick={handleEditTsk}>
-          <span>Edit</span>
-        </div>
-        <div className="task_button" onClick={handleDeleteTask}>
-          <span>Delete</span>
-        </div>
-        <div className="checkbox_container">
-          <input type="checkbox" 
-          onChange={handleSetStatus}
-          checked={status}
+    <TodoWrapper>
+      <TaskContainer>
+        <TaskTitle status={status}>{task}</TaskTitle>
+      </TaskContainer>
+      <TodoInputContainer>
+        <InputCommon
+          value={todoState}
+          width={"95"}
+          height={"80"}
+          border={"none"}
+          callback={handleChangeTask}
+        />
+      </TodoInputContainer>
+      <TaskWrapper>
+        <BtnContainer height={"50"} width={"250"}>
+          <ButtonCommon
+            title={"Edit"}
+            colors={["rgb(129, 212, 239)", "rgb(65, 187, 228)"]}
+            callback={handleEditTsk}
           />
-        </div>
-      </div>
-    </div>
+          <ButtonCommon
+            title={"Delete"}
+            colors={["rgb(229, 130, 130)", "rgb(237, 88, 88)"]}
+            callback={handleDeleteTask}
+          />
+        </BtnContainer>
+        <CheckboxContainer>
+          <InputCommon
+            type={"checkbox"}
+            checked={status}
+            width={"95"}
+            height={"80"}
+            border={"none"}
+            callback={handleSetStatus}
+          />
+        </CheckboxContainer>
+      </TaskWrapper>
+    </TodoWrapper>
   )
 }
 
