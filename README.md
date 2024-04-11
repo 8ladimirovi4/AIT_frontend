@@ -2,7 +2,7 @@
 
 This repository contains tutorials on web development using HTML, CSS, JavaScript, TypeScript, and React. 
 
-Lessons at branches
+Watch lessons in branches.
 
 # Installation
 To install the necessary dependencies, run the command:
