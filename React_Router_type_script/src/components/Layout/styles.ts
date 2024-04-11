@@ -35,7 +35,7 @@ HeaderLogo.defaultProps = { src: UserLogo };
 
 export const NavContainer = styled.nav`
   display: flex;
-  gap: 10px;
+  gap: 20px;
 `;
 
 export const Main = styled.main`
@@ -64,7 +64,8 @@ export const FooterNavContainer = styled.nav`
 
 export const StyledNavLink = styled(NavLink)`
   text-decoration: none;
-  font-size: 20px;
+  font-size: 30px;
+  font-weight: bold;
   color: white;
 `;
 
