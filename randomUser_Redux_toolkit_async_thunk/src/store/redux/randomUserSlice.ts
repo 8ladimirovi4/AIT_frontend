@@ -24,7 +24,7 @@ export const randomUsereSlice = createAppSlice({
   name: 'RANDOMUSER',
   initialState: randomUserInitialState,
   reducers: (create) => ({
-    getRandomUser: create.asyncThunk(
+    getRandomUser: create.asyncThunk(                             //type: "RANDOMUSER/getRandomUser".
       async (arg: any, { rejectWithValue }) => {
         const response = await getRandomUserAPI(rejectWithValue);
         return response;
